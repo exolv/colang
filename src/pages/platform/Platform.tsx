@@ -14,8 +14,6 @@ import Select, { SelectPropsOption } from '../../components/ui/form/Select';
 import Alert, { AlertData } from '../../components/ui/Alert';
 import Modal from '../../components/ui/Modal';
 import Input from '../../components/ui/form/Input';
-import Title from '../../components/ui/typography/Title';
-import Text from '../../components/ui/typography/Text';
 
 type OnboardData = {
   fullName: string;
@@ -62,14 +60,6 @@ const Platform: React.FC = () => {
       <Navbar />
 
       <div className='px-72 pb-8 pt-32'>
-        <div className='flex justify-between items-center mb-8'>
-          <div>
-            <Title size='text-3xl'>Projects</Title>
-            <Text size='text-base'>Explore your available projects or create a new one.</Text>
-          </div>
-          <Button bg='bg-indigo-500 hover:bg-indigo-600' color='text-white' fontSize='text-sm' padding='px-6 py-0' className='shadow-md shadow-indigo-500/50'>New project</Button>
-        </div>
-
         <Outlet />
       </div>
 

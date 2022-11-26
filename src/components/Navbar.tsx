@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
   return (
     <div className='fixed top-0 left-0 right-0 w-full flex justify-between items-center py-4 px-8 bg-white z-40 border-b border-b-gray-200'>
       <div className='flex items-center'>
-      <div className='w-8 h-8 flex justify-center items-center cursor-pointer mr-8' onClick={toggleMenu}>
+        <div className='w-8 h-8 flex justify-center items-center cursor-pointer mr-8' onClick={toggleMenu}>
           <Bars2Icon className='w-5 h-5 text-gray-500' />
         </div>
         <Link to='/'>
