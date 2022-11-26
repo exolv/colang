@@ -79,7 +79,7 @@ const Register: React.FC = () => {
       <div className='w-2/5 p-20 flex flex-col justify-between'>
         <div className='flex justify-between items-center mb-6'>
           <Link to='/'>
-            <img src='colang-logo.svg' alt='colang' width={150} />
+            <img src='/colang-logo.svg' alt='colang' width={150} />
           </Link>
           <Link to='/login'>
             <Text size='text-md' color='text-indigo-500'>Log in</Text>

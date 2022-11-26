@@ -2,7 +2,7 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { MouseEventHandler } from 'react';
 
 type ButtonPropsFontSize = 'text-sm' | 'text-md';
-type ButtonPropsPadding = 'px-10 py-3';
+type ButtonPropsPadding = 'px-10 py-3' | 'px-6 py-0';
 interface ButtonProps {
   children: string;
   className?: string;
