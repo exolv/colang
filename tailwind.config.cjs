@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        prompt: ['var(--font-prompt)'],
-        montserrat: ['var(--font-montserrat)']
+        prompt: ['Prompt'],
+        montserrat: ['Montserrat']
       },
       fontSize: {
         sm: '0.8125rem',
