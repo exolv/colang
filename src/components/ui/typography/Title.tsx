@@ -1,15 +1,25 @@
-type TitlePropsColor = 'text-slate-900' | 'text-white';
-type TitlePropsSize = 'text-3xl' | 'text-4xl';
-interface TitleProps {
-  children: JSX.Element | string | undefined;
-  color?: TitlePropsColor;
-  size?: TitlePropsSize;
-  className?: string;
+export type TitlePropsSize = 'lg' | 'base' | 'sm';
+const TitlePropsSizeMap = {
+  lg: 'text-4xl',
+  base: 'text-3xl',
+  sm: 'text-2xl'
 };
 
-const Title: React.FC<TitleProps> = ({ children, color = 'text-slate-900', size = 'text-4xl', className = '' }) => {
+export interface TitleProps {
+  children: React.ReactNode;
+  className?: string;
+
+  size?: TitlePropsSize;
+};
+
+const Title: React.FC<TitleProps> = ({
+  children,
+  className = '',
+
+  size = 'base'
+}) => {
   return (
-    <h1 className={`font-prompt font-semibold ${size} ${color} leading-normal ${className}`}>
+    <h1 className={`font-prompt font-semibold leading-normal ${TitlePropsSizeMap[size]} ${className}`}>
       {children}
     </h1>
   );

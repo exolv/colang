@@ -1,39 +1,52 @@
-import { InformationCircleIcon } from '@heroicons/react/24/outline';
-
+import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import Text, { TextPropsColor } from './typography/Text';
 
-type AlertDataType = 'SUCCESS' | 'ERROR' | 'WARNING' | 'INFO';
-export interface AlertData {
-  status: AlertDataType;
-  title: string;
-  message: string;
+export type AlertPropsType = 'success' | 'error' | 'warning' | 'info';
+const AlertPropsTypeMap = {
+  success: {
+    ui: 'bg-green-50 border-green-500',
+    text: 'green',
+    icon: <CheckCircleIcon className='w-5 h-5 text-green-500' />
+  },
+  error: {
+    ui: 'bg-red-50 border-red-500',
+    text: 'red',
+    icon: <XCircleIcon className='w-5 h-5 text-red-500' />
+  },
+  warning: {
+    ui: 'bg-yellow-50 border-yellow-500',
+    text: 'yellow',
+    icon: <ExclamationCircleIcon className='w-5 h-5 text-yellow-500' />
+  },
+  info: {
+    ui: 'bg-indigo-50 border-indigo-500',
+    text: 'primary',
+    icon: <InformationCircleIcon className='w-5 h-5 text-indigo-500' />
+  }
 };
-interface AlertProps {
+
+export interface AlertProps {
   children: string;
   className?: string;
-  bg?: string;
-  border?: string;
-  color?: string;
-  icon?: JSX.Element;
+
+  type?: AlertPropsType;
   title: string;
 };
 
 const Alert: React.FC<AlertProps> = ({
   children,
   className = '',
-  bg = 'bg-indigo-50',
-  border = 'border-indigo-500',
-  color = 'text-indigo-500',
-  icon = <InformationCircleIcon className={`w-5 h-5 text-indigo-500`} />,
+
+  type = 'info',
   title
 }) => {
   return (
-    <div className={`font-montserrat text-[14px] rounded-lg ${bg} border ${border} p-4 ${className}`}>
+    <div className={`w-fit rounded-lg border ${AlertPropsTypeMap[type].ui} p-4 ${className}`}>
       <div className='flex items-start'>
-        <div className='mr-3'>{icon}</div>
+        <div className='mr-3 mt-px'>{AlertPropsTypeMap[type].icon}</div>
         <div>
-          <Text size='text-sm' color={color as TextPropsColor} weight='font-medium' className='mb-1'>{title}</Text>
-          <Text size='text-sm' color='text-slate-500'>{children}</Text>
+          <Text size='sm' color={AlertPropsTypeMap[type].text as TextPropsColor} weight='500' className='mb-1'>{title}</Text>
+          <Text size='sm' color='light'>{children}</Text>
         </div>
       </div>
     </div>

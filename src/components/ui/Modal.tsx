@@ -1,30 +1,53 @@
+import React from 'react';
+import Icon from './Icon';
 import Text from './typography/Text';
 
-interface ModalProps {
-  children: JSX.Element;
+export type ModalPropsColor = 'primary' | 'red' | 'green' | 'yellow' | 'gray';
+
+export interface ModalProps {
+  children: React.ReactNode;
   className?: string;
-  header?: JSX.Element;
+
+  color?: ModalPropsColor;
   title: string;
-  text: string;
-  content: JSX.Element | string;
+  content?: React.ReactNode;
+  icon?: JSX.Element;
+  buttons?: React.ReactNode[];
+  toggled?: boolean;
 };
 
 const Modal: React.FC<ModalProps> = ({
   children,
   className = '',
-  header,
+
+  color = 'primary',
   title,
-  text,
-  content
+  content,
+  icon,
+  buttons = [],
+  toggled = false
 }) => {
   return (
-    <div className='fixed w-full h-full top-0 right-0 button-0 left-0 flex justify-center items-center bg-slate-900/30'>
-      <div className={`font-montserrat bg-white rounded-xl max-w-[450px] p-10 flex flex-col justify-center text-center ${className}`}>
-        <div className='flex justify-center mb-6'>{header}</div>
-        <Text size='text-base' color='text-slate-700' weight='font-medium' className='mb-2'>{title}</Text>
-        <Text size='text-sm' color='text-slate-500'>{text}</Text>
-        <div className='mt-6'>{content}</div>
-        <div className='flex justify-around mt-6'>{children}</div>
+    <div className={`fixed w-full h-full top-0 right-0 button-0 left-0 flex justify-center items-center bg-slate-900/30 ${toggled ? 'block' : 'hidden'}`}>
+      <div className={`font-montserrat bg-white rounded-xl max-w-1/2 p-10 flex flex-col justify-center text-center ${className}`}>
+        {
+          icon &&
+            <div className='flex justify-center mb-8'>
+              {
+                <Icon size='lg' color={color}>{icon}</Icon>
+              }
+            </div>
+        }
+        <Text color='dark' weight='500' className='mb-2'>{title}</Text>
+        <Text size='sm' weight='300'>{children}</Text>
+        {
+          content && <div className='mt-8'>{content}</div>
+        }
+        <div className='flex justify-center gap-4 mt-8'>
+          {
+            buttons.map(button => button)
+          }
+        </div>
       </div>
     </div>
   );

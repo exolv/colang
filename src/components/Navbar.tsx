@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className='flex items-center'>
-        <Text size='text-sm' color='text-slate-700'>{onboarded ? fullName : email}</Text>
+        <Text size='sm' color='dark'>{onboarded ? fullName : email}</Text>
         <div className='w-8 h-8 flex justify-center items-center cursor-pointer ml-8' onClick={signOut}>
           <ArrowRightOnRectangleIcon className='w-5 h-5 text-gray-500' />
         </div>

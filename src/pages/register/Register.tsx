@@ -1,33 +1,36 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Session } from '@supabase/supabase-js';
 import supabase from '../../utils/supabase';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../utils/useUser';
 
 import login from '../../assets/img/login.jpg';
 
 import {
   EnvelopeIcon,
-  LockClosedIcon
+LockClosedIcon
 } from '@heroicons/react/24/outline';
-import { QuestionMarkCircleIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 
 import Title from '../../components/ui/typography/Title';
 import Text from '../../components/ui/typography/Text';
 import Input from '../../components/ui/form/Input';
 import Button from '../../components/ui/form/Button';
-import Alert, { AlertData } from '../../components/ui/Alert';
+import Alert, { AlertProps } from '../../components/ui/Alert';
 
 type RegisterData = {
   email: string;
   password: string;
 };
 
-const Register: React.FC = () => {
+const Login: React.FC = () => {
+  const navigate = useNavigate();
   const { isLoggedIn } = useUser({ redirect: '/platform', foundRedirect: true });
-  
+
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState<AlertData>();
+  const [alert, setAlert] = useState<AlertProps>();
 
   const { register, control, handleSubmit, formState: { errors, isValid } } = useForm<RegisterData>({ mode: 'onTouched' });
   
@@ -50,18 +53,18 @@ const Register: React.FC = () => {
     if (error) {
       setLoading(false);
       setAlert({
-        status: 'ERROR',
+        type: 'error',
         title: 'An error accured while registering.',
-        message: error.message
+        children: error.message
       });
       return;
     }
 
     setLoading(false);
     setAlert({
-      status: 'SUCCESS',
+      type: 'success',
       title: 'Your account has been successfully created!',
-      message: 'We have sent a confirmation email to your email address.'
+      children: 'We have sent a confirmation email to your email address.'
     });
   };
 
@@ -82,12 +85,12 @@ const Register: React.FC = () => {
             <img src='/colang-logo.svg' alt='colang' width={150} />
           </Link>
           <Link to='/login'>
-            <Text size='text-md' color='text-indigo-500'>Log in</Text>
+            <Text size='base' color='primary'>Log in</Text>
           </Link>
         </div>
         <div>
-          <Title color='text-slate-900' className='mb-1'>Register for an account</Title>
-          <Text>Sign up to start translating your content.</Text>
+          <Title className='mb-1'>Register for an account</Title>
+          <Text size='base'>Sign up to start translating your content.</Text>
         </div>
         <div>
           <form onSubmit={handleSubmit(submitRegister)} autoComplete='off' noValidate>
@@ -123,39 +126,25 @@ const Register: React.FC = () => {
               className='mb-6'
             />
             <div className='flex items-center'>
-              <Button bg='bg-indigo-500 hover:bg-indigo-600' color='text-white' fontSize='text-sm' padding='px-10 py-3' spinner={loading} disabled={!isValid || loading} className='shadow-md shadow-indigo-500/50'>
+              <Button type='submit' color='primary' loading={loading} disabled={!isValid || loading}>
                 Create your account
               </Button>
             </div>
           </form>
           {
             alert && !loading &&
-              <Alert
-                bg={`${alert.status === 'SUCCESS' ? 'bg-green-50' : 'bg-red-50'}`}
-                border={`${alert.status === 'SUCCESS' ? 'border-green-500' : 'border-red-500'}`}
-                color={`${alert.status === 'SUCCESS' ? 'text-green-500' : 'text-red-500'}`}
-                icon={
-                  alert.status === 'SUCCESS' ?
-                    <CheckCircleIcon className={`w-5 h-5 text-green-500`} />
-                  :
-                    <XCircleIcon className={`w-5 h-5 text-red-500`} />
-                }
-                title={alert.title}
-                className='mt-6'
-              >
-                {alert.message}
-              </Alert>
+              <Alert type={alert.type} title={alert.title} className='mt-6'>{alert.children}</Alert>
           }
         </div>
         <div className='bg-gray-200 w-full h-px'></div>
         <div>
           <div className='flex items-center mb-4'>
             <QuestionMarkCircleIcon className='w-5 h-5 text-slate-700 mr-3' />
-            <Text color='text-slate-700' size='text-base' weight='font-semibold'>Need help creating your account?</Text>
+            <Text color='dark' size='base' weight='600'>Need help creating your account?</Text>
           </div>
-          <Text size='text-sm' className='mb-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, maiores neque enim sapiente consectetur ipsum incidunt nostrum delectus.</Text>
+          <Text size='sm' weight='300' className='mb-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, maiores neque enim sapiente consectetur ipsum incidunt nostrum delectus.</Text>
           <Link to='/support'>
-            <Text size='text-sm' color='text-indigo-500'>Contact the Support</Text>
+            <Text size='sm' color='primary'>Contact the Support</Text>
           </Link>
         </div>
       </div>
@@ -163,4 +152,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default Login;

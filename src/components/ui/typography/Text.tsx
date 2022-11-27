@@ -1,25 +1,48 @@
-type TextPropsSize = 'text-sm' | 'text-base' | 'text-md';
-type TextPropsWeight = 'font-light' | 'font-normal' | 'font-medium' | 'font-semibold';
-export type TextPropsColor = 'text-slate-500' | 'text-slate-700' | 'text-indigo-500' | 'text-red-500' | 'text-green-500';
-interface TextProps {
-  children: string | undefined;
+export type TextPropsSize = 'lg' | 'base' | 'sm' | 'xs';
+const TextPropsSizeMap = {
+  lg: 'text-lg',
+  base: 'text-base',
+  sm: 'text-sm',
+  xs: 'text-xs'
+};
+
+export type TextPropsColor = 'dark' | 'light' | 'primary' | 'red' | 'green' | 'yellow';
+const TextPropsColorMap = {
+  dark: 'text-slate-700',
+  light: 'text-slate-500',
+  primary: 'text-indigo-500',
+  red: 'text-red-500',
+  green: 'text-green-500',
+  yellow: 'text-yellow-500'
+};
+
+export type TextPropsWeight = '600' | '500' | '400' | '300';
+const TextPropsWeightMap = {
+  '600': 'font-semibold',
+  '500': 'font-medium',
+  '400': 'font-normal',
+  '300': 'font-light'
+};
+
+export interface TextProps {
+  children: React.ReactNode;
   className?: string;
+
   size?: TextPropsSize;
-  weight?: TextPropsWeight;
   color?: TextPropsColor;
-  uppercase?: boolean;
+  weight?: TextPropsWeight;
 };
 
 const Text: React.FC<TextProps> = ({
   children,
   className = '',
+
   size = 'base',
-  weight = 'font-light',
-  color = 'text-slate-500',
-  uppercase = false
+  color = 'light',
+  weight = '400'
 }) => {
   return (
-    <p className={`font-montserrat ${size} ${weight} ${uppercase ? 'uppercase' : ''} ${color} leading-normal ${className}`}>
+    <p className={`font-montserrat leading-normal ${TextPropsSizeMap[size]} ${TextPropsColorMap[color]} ${TextPropsWeightMap[weight]} ${className}`}>
       {children}
     </p>
   );

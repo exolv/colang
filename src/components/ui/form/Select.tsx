@@ -1,35 +1,77 @@
-import { FieldError, useController } from 'react-hook-form';
-import ReactSelect from 'react-select';
+import React from 'react';
 import { useId } from 'react';
+import { FieldError, FieldErrorsImpl, Merge, useController } from 'react-hook-form';
+import ReactSelect from 'react-select';
 
-import Text from '../typography/Text';
-
-import { Bars3BottomLeftIcon } from '@heroicons/react/24/outline';
+import Text, { TextPropsSize } from '../typography/Text';
 
 export type SelectPropsOption = { value: string; label: string; };
-interface SelectProps {
+
+export type SelectPropsSize = 'lg' | 'base' | 'sm';
+const SelectPropsSizeMap = {
+  lg: {
+    ui: {
+      wrapper: 'h-14',
+      icon: 'w-14',
+      input: 'text-base'
+    },
+    label: 'base',
+    icon: 'w-6 h-6'
+  },
+  base: {
+    ui: {
+      wrapper: 'h-12',
+      icon: 'w-12',
+      input: 'text-sm'
+    },
+    label: 'sm',
+    icon: 'w-5 h-5'
+  },
+  sm: {
+    ui: {
+      wrapper: 'h-10',
+      icon: 'w-10',
+      input: 'text-sm'
+    },
+    label: 'xs',
+    icon: 'w-4 h-4'
+  }
+};
+
+export interface SelectProps {
   control: any;
-  error?: FieldError;
-  name: string;
-  label: string;
-  icon?: JSX.Element;
-  placeholder: string;
-  className?: string;
-  options: SelectPropsOption[];
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
   rules: any;
+  className?: string;
+
+  placeholder?: string;
+  name: string;
+  label?: string;
+  icon?: JSX.Element;
+  size?: SelectPropsSize;
+  options: SelectPropsOption[];
 };
 
 const Select: React.FC<SelectProps> = ({
   control,
   error,
+  rules,
+  className = '',
+
+  placeholder = '',
   name,
   label,
-  icon = <Bars3BottomLeftIcon className={`w-5 h-5 ${error ? 'text-red-400 group-hover:text-red-500 group-focus:text-red-500' : 'text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500'} transition-colors ease-linear`} />,
-  placeholder,
-  className = '',
-  options,
-  rules
+  icon,
+  size = 'base',
+  options
 }) => {
+  let _icon;
+  if (icon) {
+    _icon = React.cloneElement(icon, {
+      className: `${SelectPropsSizeMap[size].icon} ${error ? 'text-red-400 group-hover:text-red-500 group-focus:text-red-500' : 'text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500'} transition-colors ease-linear`
+    });
+  }
+
   const id = useId();
 
   const { field } = useController({
@@ -40,12 +82,18 @@ const Select: React.FC<SelectProps> = ({
   
   return (
     <div className={`${className}`}>
-      <Text size='text-sm' weight='font-medium' color='text-slate-700' className='mb-2 text-left'>{label}</Text>
-      <div className={`flex h-12 bg-white rounded-lg group border ${error ? 'border-red-200 hover:border-red-300 focus:border-red-300' : 'border-gray-200 hover:border-gray-300 focus:border-gray-300'} transition-colors ease-linear`}>
-        <div className='bg-white rounded-l-lg w-12 flex flex-shrink-0 justify-center items-center'>
-          {icon}
-        </div>
-        <div className='flex w-full justify-start items-center bg-white rounded-r-lg'>
+      {
+        label &&
+          <Text size={SelectPropsSizeMap[size].label as TextPropsSize} weight='500' color='dark' className='mb-2 text-left'>{label}</Text>
+      }
+      <div className={`flex ${SelectPropsSizeMap[size].ui.wrapper} bg-white rounded-lg group border ${error ? 'border-red-200 hover:border-red-300 focus:border-red-300' : 'border-gray-200 hover:border-gray-300 focus:border-gray-300'} transition-colors ease-linear`}>
+        {
+          icon &&
+            <div className={`bg-white ${SelectPropsSizeMap[size].ui.icon} rounded-l-lg border-r ${error ? 'border-r-red-200 group-hover:border-r-red-300 group-focus:border-r-red-300' : 'border-r-gray-200 group-hover:border-r-gray-300 group-focus:border-r-gray-300'} transition-colors ease-linear flex flex-shrink-0 justify-center items-center`}>
+              {_icon}
+            </div>
+        }
+        <div className={`flex w-full justify-start items-center bg-white ${icon ? 'rounded-r-lg' : 'rounded-lg'}`}>
           <ReactSelect
             ref={field.ref}
             instanceId={id}
@@ -54,7 +102,7 @@ const Select: React.FC<SelectProps> = ({
             onBlur={field.onBlur}
             onChange={field.onChange}
             placeholder={placeholder}
-            className={`font-montserrat bg-transparent pl-1 text-[14px] text-slate-700 leading-none h-full w-full outline-none`}
+            className={`font-montserrat font-light bg-transparent pl-4 ${SelectPropsSizeMap[size].ui.input} ${error ? 'text-red-500 placeholder-red-500' : 'text-slate-700 placeholder-gray-400'} leading-none h-full w-full outline-none text-left`}
             options={options}
             styles={{
               control: (base) => ({
@@ -79,7 +127,8 @@ const Select: React.FC<SelectProps> = ({
               placeholder: (base) => ({
                 ...base,
                 margin: 0,
-                textAlign: 'left'
+                textAlign: 'left',
+                color: error ? 'rgb(239 68 68)' : 'rgb(156 163 175)'
               }),
               input: (base) => ({
                 ...base,
@@ -110,7 +159,7 @@ const Select: React.FC<SelectProps> = ({
         </div>
       </div>
       {
-        error && <Text size='text-sm' color='text-red-500' className='mt-2 text-left'>{error.message as string}</Text>
+        error && <Text size='sm' color='light' className='mt-2 text-left'>{error.message as string}</Text>
       }
     </div>
   );

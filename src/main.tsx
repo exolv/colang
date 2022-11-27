@@ -14,12 +14,17 @@ import Register from './pages/register/Register';
 import Platform from './pages/platform/Platform';
 import Projects from './pages/platform/projects/Projects';
 import Project from './pages/platform/project/Project';
+import UI from './pages/ui/UI';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
     errorElement: <Error />
+  },
+  {
+    path: '/ui',
+    element: <UI />
   },
   {
     path: '/login',
