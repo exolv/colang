@@ -21,7 +21,7 @@ const Tag: React.FC<TagProps> = ({
   color = 'primary'
 }) => {
   return (
-    <div className={`inline-block rounded-full font-montserrat font-medium text-xs py-1 px-2.5 ${TagPropsColorMap[color]} ${className}`}>
+    <div className={`inline-block rounded-full font-montserrat font-medium text-[11px] py-1 px-2.5 ${TagPropsColorMap[color]} ${className}`}>
       {children}
     </div>
   );

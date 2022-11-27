@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
-    path: '/platform',
+    path: '/projects',
     element: <Platform />,
     children: [
       {

@@ -27,7 +27,7 @@ type RegisterData = {
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useUser({ redirect: '/platform', foundRedirect: true });
+  const { isLoggedIn } = useUser({ redirect: '/projects', foundRedirect: true });
 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<AlertProps>();
@@ -142,7 +142,7 @@ const Login: React.FC = () => {
             <QuestionMarkCircleIcon className='w-5 h-5 text-slate-700 mr-3' />
             <Text color='dark' size='base' weight='600'>Need help creating your account?</Text>
           </div>
-          <Text size='sm' weight='300' className='mb-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, maiores neque enim sapiente consectetur ipsum incidunt nostrum delectus.</Text>
+          <Text size='sm' weight='300' className='mb-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, maiores neque enim sapiente consectetur.</Text>
           <Link to='/support'>
             <Text size='sm' color='primary'>Contact the Support</Text>
           </Link>

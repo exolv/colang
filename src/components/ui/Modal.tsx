@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({
   toggled = false
 }) => {
   return (
-    <div className={`fixed w-full h-full top-0 right-0 button-0 left-0 flex justify-center items-center bg-slate-900/30 ${toggled ? 'block' : 'hidden'}`}>
+    <div className={`fixed w-full h-full top-0 right-0 button-0 left-0 flex justify-center items-center bg-slate-900/30 z-50 ${toggled ? 'block' : 'hidden'}`}>
       <div className={`font-montserrat bg-white rounded-xl max-w-1/2 p-10 flex flex-col justify-center text-center ${className}`}>
         {
           icon &&

@@ -50,7 +50,7 @@ const Platform: React.FC = () => {
     }
 
     setLoading(false);
-    navigate('/platform');
+    navigate('/projects');
   };
 
   return (

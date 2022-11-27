@@ -15,12 +15,12 @@ const Project: React.FC = () => {
   
   return (
     <>
-      <Link to='/platform' className='inline-flex items-center mb-4'>
+      <Link to='/projects' className='inline-flex items-center mb-4'>
         <ArrowLeftIcon className='w-4 h-4 text-gray-500 mr-3' />
-        <Text size='sm'>Platform</Text>
+        <Text size='sm'>Projects</Text>
       </Link>
 
-      <Header title='colang Project' text='This project has 3 translations in 5 languages.'>
+      <Header title='colang Project' text={`This project has 3 translations in 5 languages.`}>
         <Icon size='sm' color='gray' className='cursor-pointer'><EllipsisHorizontalIcon /></Icon>
       </Header>
 

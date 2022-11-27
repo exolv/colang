@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ title, text, children }) => {
     <div className='flex justify-between items-center mb-8'>
       <div>
         <Title>{title}</Title>
-        <Text>{text}</Text>
+        <Text size='sm'>{text}</Text>
       </div>
       {children}
     </div>

@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   return (
     <div>
       Home
-      <Link to='/platform'>Platform</Link>
+      <Link to='/projects'>Platform</Link>
     </div>
   );
 };
