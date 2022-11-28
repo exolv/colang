@@ -1,9 +1,12 @@
 import { GlobeEuropeAfricaIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import ProjectBox from '../../components/ProjectBox';
 
+import profile from '../../assets/profile.svg';
+
+import ProjectBox from '../../components/ProjectBox';
 import Alert from '../../components/ui/Alert';
+import Avatar from '../../components/ui/Avatar';
 import Button from '../../components/ui/form/Button';
 import Input from '../../components/ui/form/Input';
 import Select from '../../components/ui/form/Select';
@@ -262,6 +265,31 @@ const UI: React.FC = () => {
               ]}
               toggled={modalToggled}
             >Lorem ipsum dolor amet simena eldunt.</Modal>
+          </div>
+          <div className='mb-10'>
+            <div className='grid grid-cols-2'>
+              <div className='flex items-center gap-4'>
+                <Avatar size='lg' profiles={[
+                  profile
+                ]} />
+                <Avatar size='base' profiles={[
+                  profile
+                ]} />
+                <Avatar size='sm' profiles={[
+                  profile
+                ]} />
+              </div>
+              <div className='flex items-center gap-10'>
+                <Avatar size='base' profiles={[
+                  profile
+                ]} shadow />
+                <Avatar size='base' profiles={[
+                  profile,
+                  profile,
+                  profile
+                ]} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

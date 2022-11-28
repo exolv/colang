@@ -1,10 +1,13 @@
 import { ArrowRightOnRectangleIcon, Bars2Icon } from '@heroicons/react/24/outline';
 
+import profile from '../assets/profile.svg';
+
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import supabase from '../utils/supabase';
 import { useUser } from '../utils/useUser';
 import Text from './ui/typography/Text';
+import Avatar from './ui/Avatar';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -30,7 +33,10 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className='flex items-center'>
-        <Text size='sm' color='dark'>{onboarded ? fullName : email}</Text>
+        <div className='flex items-center gap-2'>
+          <Text size='sm' color='dark'>{onboarded ? fullName : email}</Text>
+          <Avatar size='sm' profiles={[ profile ]} />
+        </div>
         <div className='w-8 h-8 flex justify-center items-center cursor-pointer ml-8' onClick={signOut}>
           <ArrowRightOnRectangleIcon className='w-5 h-5 text-gray-500' />
         </div>

@@ -26,7 +26,7 @@ const Projects: React.FC = () => {
 
   const { register, control, handleSubmit, formState: { errors, isValid } } = useForm<ProjectData>({ mode: 'onTouched' });
 
-  const submitOnboard = async (projectData: ProjectData, e: any) => {
+  const submitCreateProject = async (projectData: ProjectData, e: any) => {
     e.preventDefault();
 
     //
@@ -34,7 +34,7 @@ const Projects: React.FC = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(submitOnboard)} autoComplete='off' noValidate>
+      <form onSubmit={handleSubmit(submitCreateProject)} autoComplete='off' noValidate>
         <Modal
           color='primary'
           title='Create a new project'
@@ -43,7 +43,7 @@ const Projects: React.FC = () => {
             <Button type='submit'>Create project</Button>
           ]}
           toggled={newProjectModal}
-          className='w-[25%]'
+          className='w-[30%]'
           content={
             <>
               <Input
