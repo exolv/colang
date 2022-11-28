@@ -11,7 +11,7 @@ import Avatar from './ui/Avatar';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const { email, fullName, onboarded } = useUser({ redirect: '/login' });
+  const { email, fullName } = useUser({ redirect: '/login' });
 
   const signOut = async () => {
     await supabase.auth.signOut();
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className='flex items-center'>
         <div className='flex items-center gap-2'>
-          <Text size='sm' color='dark'>{onboarded ? fullName : email}</Text>
+          <Text size='sm' color='dark'>{fullName !== null ? fullName : email}</Text>
           <Avatar size='sm' profiles={[ profile ]} />
         </div>
         <div className='w-8 h-8 flex justify-center items-center cursor-pointer ml-8' onClick={signOut}>
