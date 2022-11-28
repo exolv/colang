@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import useSWR from 'swr';
 import supabase from './supabase';
+import { UserRole } from '../pages/register/Register';
 
 export interface UserData {
   email: string | undefined;
@@ -9,7 +10,7 @@ export interface UserData {
   country: string | undefined;
   signUpDate: string | undefined;
   isLoggedIn: boolean;
-  onboarded: boolean;
+  role: UserRole | undefined;
 };
 
 export const useUser = ({
@@ -27,7 +28,7 @@ export const useUser = ({
         country: data.session.user.user_metadata.country,
         signUpDate: data.session.user.created_at,
         isLoggedIn: true,
-        onboarded: data.session.user.user_metadata.onboarded
+        role: data.session.user.user_metadata.role
       };
     }
 
@@ -37,7 +38,7 @@ export const useUser = ({
       country: undefined,
       signUpDate: undefined,
       isLoggedIn: false,
-      onboarded: false
+      role: undefined
     };
   };
 
@@ -45,6 +46,10 @@ export const useUser = ({
   useEffect(() => {
     if (!redirect || !user) {
       return;
+    }
+
+    if (user.fullName === null) {
+      navigate('/onboard');
     }
 
     if ((redirect && !foundRedirect && !user.isLoggedIn) || (foundRedirect && user.isLoggedIn)) {
@@ -62,6 +67,6 @@ export const useUser = ({
     country: undefined,
     signUpDate: undefined,
     isLoggedIn: false,
-    onboarded: false
+    role: undefined
   };
 };

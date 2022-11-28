@@ -101,10 +101,10 @@ const Input: React.FC<InputProps> = ({
       {
         type === 'password' && isDirty ?
           <ul className='mt-2 text-left'>
-            <li className={`relative pl-6 before:absolute before:top-[7px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^.{8,}$/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>Minimum 8 characters</Text></li>
-            <li className={`relative pl-6 before:absolute before:top-[7px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^(?=.*[A-Z])/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>At least one uppercase letter</Text></li>
-            <li className={`relative pl-6 before:absolute before:top-[7px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^(?=.*[0-9])/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>At least one number</Text></li>
-            <li className={`relative pl-6 before:absolute before:top-[7px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_])/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>At least on special character</Text></li>
+            <li className={`relative pl-6 before:absolute before:top-[9px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^.{8,}$/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>Minimum 8 characters</Text></li>
+            <li className={`relative pl-6 before:absolute before:top-[9px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^(?=.*[A-Z])/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>At least one uppercase letter</Text></li>
+            <li className={`relative pl-6 before:absolute before:top-[9px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^(?=.*[0-9])/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>At least one number</Text></li>
+            <li className={`relative pl-6 before:absolute before:top-[9px] before:left-[7px] before:w-1.5 before:h-1.5 before:rounded-full ${/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_])/.test(field.value) ? 'before:bg-green-500' : 'before:bg-slate-500'}`}><Text size='sm' color='light'>At least on special character</Text></li>
           </ul>
         :
           error && <Text size='sm' color='red' className='mt-2 text-left'>{error.message as string}</Text>

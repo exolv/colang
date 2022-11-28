@@ -104,8 +104,18 @@ const Select: React.FC<SelectProps> = ({
             placeholder={placeholder}
             className={`font-montserrat font-light bg-transparent pl-4 ${SelectPropsSizeMap[size].ui.input} ${error ? 'text-red-500 placeholder-red-500' : 'text-slate-700 placeholder-gray-400'} leading-none h-full w-full outline-none text-left`}
             options={options}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: 'rgb(99 102 241)',
+                primary25: 'rgb(238 242 255)',
+                primary50: 'rgb(199 210 254)',
+                primary75: 'rgb(129 140 248)'
+              }
+            })}
             styles={{
-              control: (base) => ({
+              control: (base, state) => ({
                 ...base,
                 border: 'none',
                 borderTopLeftRadius: 0,
@@ -137,7 +147,7 @@ const Select: React.FC<SelectProps> = ({
                 margin: 0,
                 padding: 0
               }),
-              indicatorsContainer: (base) => ({
+              indicatorsContainer: (base, state) => ({
                 ...base,
                 width: '3rem'
               }),
@@ -149,17 +159,32 @@ const Select: React.FC<SelectProps> = ({
                   :
                     (state.isFocused ? 'rgb(209 213 219)' : 'rgb(229 231 235)')
               }),
+              menu: (base) => ({
+                ...base,
+                borderRadius: '0.5rem',
+                left: '-1px',
+                width: 'calc(100% + 2px)',
+                boxShadow: 'none',
+                border: '1px solid rgb(229 231 235)',
+                overflow: 'hidden'
+              }),
               menuList: (base) => ({
                 ...base,
                 textAlign: 'left',
-                borderRadius: '0rem'
+                borderRadius: '0rem',
+                color: 'rgb(51 65 85)',
+                padding: 0
+              }),
+              option: (base) => ({
+                ...base,
+                padding: '0.75rem 1rem'
               })
             }}
           />
         </div>
       </div>
       {
-        error && <Text size='sm' color='light' className='mt-2 text-left'>{error.message as string}</Text>
+        error && <Text size='sm' color='red' className='mt-2 text-left'>{error.message as string}</Text>
       }
     </div>
   );

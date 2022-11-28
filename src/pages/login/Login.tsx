@@ -117,11 +117,11 @@ const Login: React.FC = () => {
               placeholder='Your password'
               className='mb-6'
             />
-            <div className='flex items-center'>
+            <div className='flex items-center gap-x-6'>
               <Button type='submit' color='primary' loading={loading} disabled={!isValid || loading}>
                 Enter your account
               </Button>
-              <Link to='/forgot' className='ml-6'>
+              <Link to='/forgot'>
                 <Text size='sm' color='primary'>Forgot your password?</Text>
               </Link>
             </div>

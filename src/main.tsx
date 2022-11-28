@@ -11,6 +11,7 @@ import Home from './pages/home/Home';
 import Error from './pages/error/Error';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import Onboard from './pages/onboard/Onboard';
 import Platform from './pages/platform/Platform';
 import Projects from './pages/platform/projects/Projects';
 import Project from './pages/platform/project/Project';
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/onboard',
+    element: <Onboard />
   },
   {
     path: '/projects',
