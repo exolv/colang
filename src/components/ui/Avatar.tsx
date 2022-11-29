@@ -25,8 +25,8 @@ const Avatar: React.FC<IconProps> = ({
   return (
     <div className={`flex items-center ${profiles.length > 1 ? (size === 'sm' ? '-space-x-3' : '-space-x-4') : ''} ${className}`}>
       {
-        profiles.map(profile => (
-          <div className={`rounded-full flex justify-center items-center bg-white ${AvatarPropsSizeMap[size]} p-[3px] ${shadow ? 'shadow-md' : ''}`}>
+        profiles.map((profile, index) => (
+          <div key={index} className={`rounded-full flex justify-center items-center bg-white ${AvatarPropsSizeMap[size]} p-[3px] ${shadow ? 'shadow-md' : ''}`}>
             <img src={profile} className='rounded-full max-w-full' />
           </div>
         ))

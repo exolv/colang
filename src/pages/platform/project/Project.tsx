@@ -11,10 +11,6 @@ const Project: React.FC = () => {
   const { role } = useUser();
 
   const { id } = useParams();
-
-  const toggleMenu = () => {
-    //
-  };
   
   return (
     <>
@@ -27,7 +23,7 @@ const Project: React.FC = () => {
         <Icon size='sm' color='gray' className='cursor-pointer'><EllipsisHorizontalIcon /></Icon>
       </Header>
 
-      <div>{id}</div>
+      <div>{id} {role}</div>
     </>
   );
 };

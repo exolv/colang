@@ -1,4 +1,4 @@
-import { Bars3Icon, PlusIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, GlobeEuropeAfricaIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -8,11 +8,12 @@ import ProjectBox from '../../../components/ProjectBox';
 import Alert, { AlertProps } from '../../../components/ui/Alert';
 import Button from '../../../components/ui/form/Button';
 import Input from '../../../components/ui/form/Input';
-import Select from '../../../components/ui/form/Select';
+import Select, { SelectPropsOption } from '../../../components/ui/form/Select';
 import Modal from '../../../components/ui/Modal';
 
 type ProjectData = {
   title: string;
+  language: SelectPropsOption;
 };
 
 const Projects: React.FC = () => {
@@ -28,8 +29,10 @@ const Projects: React.FC = () => {
 
   const submitCreateProject = async (projectData: ProjectData, e: any) => {
     e.preventDefault();
-
-    //
+    
+    setLoading(true);
+    console.log(projectData);
+    
   };
 
   return (
@@ -40,9 +43,10 @@ const Projects: React.FC = () => {
           title='Create a new project'
           buttons={[
             <Button color='gray' flat onClick={() => setNewProjectModal(!newProjectModal)}>Close</Button>,
-            <Button type='submit'>Create project</Button>
+            <Button type='submit' loading={loading} disabled={!isValid || loading}>Create project</Button>
           ]}
           toggled={newProjectModal}
+          toggleChange={(toggle: boolean) => setNewProjectModal(toggle)}
           className='w-[30%]'
           content={
             <>
@@ -57,21 +61,22 @@ const Projects: React.FC = () => {
                 label='Title'
                 placeholder='Project title'
                 icon={<Bars3Icon />}
+                className='mb-6'
               />
-              {/* <Select
+              <Select
                 control={control}
-                error={errors.country}
-                name='country'
-                label='Country'
+                error={errors.language}
+                name='language'
+                label='Language'
                 icon={<GlobeEuropeAfricaIcon />}
-                placeholder='Your country'
+                placeholder='Project language'
                 options={[
                   { value: 'RO', label: 'Romania' },
                   { value: 'DE', label: 'Germany' },
                   { value: 'ES', label: 'Spain' }
                 ]}
                 rules={{ required: 'This field is required.' }}
-              /> */}
+              />
               {
                 alert && !loading &&
                   <Alert type={alert.type} title={alert.title} className='mt-6'>{alert.children}</Alert>

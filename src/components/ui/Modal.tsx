@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from './Icon';
 import Text from './typography/Text';
 
@@ -14,6 +14,7 @@ export interface ModalProps {
   icon?: JSX.Element;
   buttons?: React.ReactNode[];
   toggled?: boolean;
+  toggleChange?: any;
 };
 
 const Modal: React.FC<ModalProps> = ({
@@ -25,10 +26,26 @@ const Modal: React.FC<ModalProps> = ({
   content,
   icon,
   buttons = [],
-  toggled = false
+  toggled = false,
+  toggleChange
 }) => {
+  const [_toggled, setToggled] = useState(toggled);
+
+  useEffect(() => {
+    setToggled(toggled);
+  }, [toggled]);
+
+  const toggleModal = (e: any) => {
+    if (e.currentTarget !== e.target) {
+      return;
+    }
+
+    setToggled(!_toggled);
+    toggleChange(!_toggled);
+  };
+
   return (
-    <div className={`fixed w-full h-full top-0 right-0 button-0 left-0 flex justify-center items-center bg-slate-900/30 z-50 ${toggled ? 'block' : 'hidden'}`}>
+    <div className={`fixed w-full h-full top-0 right-0 button-0 left-0 flex justify-center items-center bg-slate-900/30 z-50 ${_toggled ? 'block' : 'hidden'}`} onClick={(e) => toggleModal(e)}>
       <div className={`font-montserrat bg-white rounded-xl max-w-1/2 p-10 flex flex-col justify-center text-center ${className}`}>
         {
           icon &&
@@ -45,7 +62,9 @@ const Modal: React.FC<ModalProps> = ({
         }
         <div className='flex justify-center gap-4 mt-8'>
           {
-            buttons.map(button => button)
+            buttons.map((button, index) => (
+              <div key={index}>{button}</div>
+            ))
           }
         </div>
       </div>

@@ -110,10 +110,9 @@ const Onboard: React.FC = () => {
                     { value: 'ES', label: 'Spain' }
                   ]}
                   rules={{ required: 'This field is required.' }}
-                  className='mb-6'
                 />
                 <div className='flex items-center gap-x-6'>
-                  <Button type='submit' color='primary' loading={loading} disabled={!isValid || loading}>
+                  <Button type='submit' loading={loading} disabled={!isValid || loading}>
                     Enter the platform
                   </Button>
                 </div>
