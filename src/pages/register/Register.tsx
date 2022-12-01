@@ -33,7 +33,7 @@ export enum UserRole {
 };
 
 const Register: React.FC = () => {
-  const { isLoggedIn } = useUser({ redirect: '/projects', foundRedirect: true });
+  const { isLoggedIn } = useUser({ redirect: '/platform', foundRedirect: true });
 
   const [loading, setLoading] = useState(false);
   const [chooseRole, setChooseRole] = useState(true);

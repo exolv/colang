@@ -6,10 +6,11 @@ const TextPropsSizeMap = {
   xs: 'text-xs'
 };
 
-export type TextPropsColor = 'dark' | 'light' | 'primary' | 'red' | 'green' | 'yellow';
+export type TextPropsColor = 'dark' | 'light' | 'white' | 'primary' | 'red' | 'green' | 'yellow';
 const TextPropsColorMap = {
   dark: 'text-slate-700',
   light: 'text-slate-500',
+  white: 'text-white',
   primary: 'text-indigo-500',
   red: 'text-red-500',
   green: 'text-green-500',

@@ -27,7 +27,7 @@ type LoginData = {
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useUser({ redirect: '/projects', foundRedirect: true });
+  const { isLoggedIn } = useUser({ redirect: '/platform', foundRedirect: true });
 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<AlertProps>();
@@ -56,7 +56,7 @@ const Login: React.FC = () => {
     setLoading(false);
     const response = await supabase.auth.setSession(session as Session);
     if (response.error === null) {
-      navigate('/projects');
+      navigate('/platform');
     }
   };
 

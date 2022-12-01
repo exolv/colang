@@ -264,6 +264,7 @@ const UI: React.FC = () => {
                 <Button type='submit'>Get started</Button>
               ]}
               toggled={modalToggled}
+              toggleChange={(toggle: boolean) => setModalToggled(toggle)}
             >Lorem ipsum dolor amet simena eldunt.</Modal>
           </div>
           <div className='mb-10'>
@@ -299,7 +300,7 @@ const UI: React.FC = () => {
         <div className='col-span-2'>
           <div className='mb-10'>
             <div className='grid grid-cols-4'>
-              <ProjectBox id='1' title='colang Project' createDate={Date.now()} translations={[1, 2, 3]} />
+              <ProjectBox id='1' title='UI Project' createDate={Date.now()} translations={[1, 2, 3]} />
             </div>
           </div>
         </div>

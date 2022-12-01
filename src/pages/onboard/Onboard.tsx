@@ -29,7 +29,7 @@ const Onboard: React.FC = () => {
   const { isLoggedIn, fullName } = useUser({ redirect: '/login' });
 
   if (fullName !== null) {
-    navigate('/projects');
+    navigate('/platform');
   }
 
   const { register, control, handleSubmit, formState: { errors, isValid } } = useForm<OnboardData>({ mode: 'onTouched' });
@@ -56,7 +56,7 @@ const Onboard: React.FC = () => {
     }
 
     setLoading(false);
-    navigate('/projects');
+    navigate('/platform');
   };
 
   return (

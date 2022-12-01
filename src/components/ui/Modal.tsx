@@ -14,7 +14,7 @@ export interface ModalProps {
   icon?: JSX.Element;
   buttons?: React.ReactNode[];
   toggled?: boolean;
-  toggleChange?: any;
+  toggleChange: any;
 };
 
 const Modal: React.FC<ModalProps> = ({

@@ -13,7 +13,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Onboard from './pages/onboard/Onboard';
 import Platform from './pages/platform/Platform';
-import Projects from './pages/platform/projects/Projects';
+import PlatformRole from './pages/platform/PlatformRole';
 import Project from './pages/platform/project/Project';
 import UI from './pages/ui/UI';
 
@@ -40,12 +40,12 @@ const router = createBrowserRouter([
     element: <Onboard />
   },
   {
-    path: '/projects',
+    path: '/platform',
     element: <Platform />,
     children: [
       {
         path: '',
-        element: <Projects />
+        element: <PlatformRole />
       },
       {
         path: 'project/:id',
