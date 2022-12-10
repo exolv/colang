@@ -1,14 +1,16 @@
-import Text from './typography/Text';
+import Text, { TextPropsColor } from './typography/Text';
 
 export type ProgressPropsColor = 'primary' | 'white';
 const ProgressPropsColorMap = {
   primary: {
-    bar: 'bg-white',
-    progress: 'bg-indigo-500'
+    bar: 'bg-indigo-100',
+    progress: 'bg-indigo-500',
+    percentage: 'dark'
   },
   white: {
     bar: 'bg-white/40',
-    progress: 'bg-white'
+    progress: 'bg-white',
+    percentage: 'white'
   }
 };
 
@@ -29,7 +31,12 @@ const Progress: React.FC<ProgressProps> = ({
 }) => {
   return (
     <div className={`w-full ${className}`}>
-      <Text size='base' color='white' weight='500' className='mb-1'>{percentage}%</Text>
+      { showPercentage && 
+        <div className='mb-1 flex justify-between'>
+          <Text size='xs' color={ProgressPropsColorMap[color].percentage as TextPropsColor}>Progress</Text>
+          <Text size='xs' color={ProgressPropsColorMap[color].percentage as TextPropsColor}>{percentage}%</Text>
+        </div>
+      }
       <div className={`rounded-md h-1 relative overflow-hidden ${ProgressPropsColorMap[color].bar}`}>
         <div style={{ width: `${percentage}%` }} className={`h-full ${ProgressPropsColorMap[color].progress}`}></div>
       </div>

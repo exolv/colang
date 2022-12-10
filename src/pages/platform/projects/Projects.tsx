@@ -91,7 +91,7 @@ const Projects: React.FC = () => {
         <Button icon={<PlusIcon />} onClick={() => setNewProjectModal(!newProjectModal)}>New project</Button>
       </Header>
       
-      <div className='grid grid-cols-3 gap-6'>
+      <div className='grid xl:grid-cols-4 lg:grid-cols-3 gap-6'>
         <ProjectBox id='1' title='colang Project' createDate={date} translations={[1, 2, 3]} />
         <ProjectBox id='2' title='munk Project' createDate={date} translations={[1, 2, 3, 4]} />
       </div>
